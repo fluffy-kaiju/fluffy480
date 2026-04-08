@@ -1,0 +1,12 @@
+services:
+  cpp-dev:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workplaces:cached
+      - /dev:/dev
+    privileged: true
+    ports:
+      - "8008:8008" # This opens the port for the CLI
+    command: /bin/sh -c "while sleep 1000; do :; done"

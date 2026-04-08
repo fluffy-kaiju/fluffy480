@@ -1,0 +1,13 @@
+{
+	"name": "DevCPP",
+    "service": "cpp-dev",
+    "workspaceFolder": "/workplaces",
+	"dockerComposeFile": "docker-compose.yml",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"platformio.platformio-ide"
+			]
+		}
+	}
+}
