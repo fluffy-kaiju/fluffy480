@@ -24,8 +24,11 @@ void loop()
   const int whitePotValue = whitePot.getValuePercent(true);
   const int motPotValue = motPot.getValuePercent(true);
 
-  buttonForward.onChange([](void *data) -> void *
-                         {
+  // Skip if both buttons are pressed 
+  if (!(buttonForward.isPressed() && buttonReverse.isPressed()))
+  {
+    buttonForward.onChange([](void *data) -> void *
+                           {
                             DRV8833 *motor = (DRV8833 *)data;
                             bool isPressed = buttonForward.isPressed();
                             if (isPressed)
@@ -38,8 +41,8 @@ void loop()
                             }
                             return nullptr; }, &motor);
 
-  buttonReverse.onChange([](void *data) -> void *
-                         {
+    buttonReverse.onChange([](void *data) -> void *
+                           {
                             DRV8833 *motor = (DRV8833 *)data;
                             bool isPressed = buttonReverse.isPressed();
                             if (isPressed)
@@ -52,5 +55,7 @@ void loop()
                               Serial.printf("Motor stop\n");
                             }
                             return nullptr; }, &motor);
+  }
+
   delay(100);
 }
